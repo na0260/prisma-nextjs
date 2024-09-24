@@ -71,6 +71,17 @@ model product_details {
   products products @relation(fields: [product_id], references: [id], onDelete: Restrict, onUpdate: Cascade)
 }
 
+model product_sliders {
+  id BigInt @id @default(autoincrement()) @db.UnsignedBigInt
+  title String @db.VarChar(200)
+  short_des String @db.VarChar(255)
+  price String @db.VarChar(50)
+  image String @db.VarChar(255)
+  product_id BigInt @db.UnsignedBigInt
+  createdAt DateTime @default(now()) @db.Timestamp(0)
+  updatedAt DateTime @default(now()) @db.Timestamp(0) @updatedAt
+}
+
 enum products_remark {
   POPULAR
   NEW
