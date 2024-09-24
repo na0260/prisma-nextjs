@@ -93,6 +93,28 @@ model users {
   updatedAt DateTime @default(now()) @db.Timestamp(0) @updatedAt
 }
 
+model customer_profiles {
+  id BigInt @id @default(autoincrement()) @db.UnsignedBigInt
+  cus_name String @db.VarChar(50)
+  cus_add String @db.VarChar(255)
+  cus_city String @db.VarChar(50)
+  cus_state String @db.VarChar(50)
+  cus_postcode String @db.VarChar(50)
+  cus_country String @db.VarChar(50)
+  cus_phone String @db.VarChar(50)
+  cus_fax String @db.VarChar(50)
+  ship_name String @db.VarChar(50)
+  ship_add String @db.VarChar(255)
+  ship_city String @db.VarChar(50)
+  ship_state String @db.VarChar(50)
+  ship_postcode String @db.VarChar(50)
+  ship_country String @db.VarChar(50)
+  ship_phone String @db.VarChar(50)
+  user_id BigInt @unique @db.UnsignedBigInt
+  createdAt DateTime @default(now()) @db.Timestamp(0)
+  updatedAt DateTime @default(now()) @db.Timestamp(0) @updatedAt
+}
+
 enum products_remark {
   POPULAR
   NEW
