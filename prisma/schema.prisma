@@ -19,6 +19,8 @@ model brands {
   BrandImg String @db.VarChar(255)
   createdAt DateTime @default(now()) @db.Timestamp(0)
   updatedAt DateTime @default(now()) @db.Timestamp(0) @updatedAt
+
+  products products[]
 }
 
 model categories {
@@ -27,6 +29,8 @@ model categories {
   categoryImg String @db.VarChar(255)
   createdAt DateTime @default(now()) @db.Timestamp(0)
   updatedAt DateTime @default(now()) @db.Timestamp(0) @updatedAt
+
+  products products[]
 }
 
 model products {
@@ -44,6 +48,9 @@ model products {
   brand_id BigInt @db.UnsignedBigInt
   createdAt DateTime @default(now()) @db.Timestamp(0)
   updatedAt DateTime @default(now()) @db.Timestamp(0) @updatedAt
+
+  brands brands @relation(fields: [brand_id], references: [id], onDelete: Restrict, onUpdate: Cascade)
+  categories categories @relation(fields: [category_id], references: [id], onDelete: Restrict, onUpdate: Cascade)
 }
 
 enum products_remark {
