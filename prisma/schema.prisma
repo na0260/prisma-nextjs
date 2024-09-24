@@ -55,6 +55,7 @@ model products {
   product_details product_details?
   product_sliders product_sliders?
   product_wishes product_wishes[]
+  product_carts product_carts[]
 }
 
 model product_details {
@@ -95,6 +96,7 @@ model users {
 
   customer_profiles customer_profiles?
   product_wishes product_wishes[]
+  product_carts product_carts[]
 }
 
 model customer_profiles {
@@ -142,6 +144,9 @@ model product_carts {
   price String @db.VarChar(50)
   createdAt DateTime @default(now()) @db.Timestamp(0)
   updatedAt DateTime @default(now()) @db.Timestamp(0) @updatedAt
+
+  products products @relation(fields: [product_id], references: [id], onDelete: Restrict, onUpdate: Cascade)
+  users users @relation(fields: [user_id], references: [id], onDelete: Restrict, onUpdate: Cascade)
 }
 
 enum products_remark {
