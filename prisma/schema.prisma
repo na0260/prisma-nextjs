@@ -54,6 +54,7 @@ model products {
 
   product_details product_details?
   product_sliders product_sliders?
+  product_wishes product_wishes[]
 }
 
 model product_details {
@@ -93,6 +94,7 @@ model users {
   updatedAt DateTime @default(now()) @db.Timestamp(0) @updatedAt
 
   customer_profiles customer_profiles?
+  product_wishes product_wishes[]
 }
 
 model customer_profiles {
@@ -125,6 +127,9 @@ model product_wishes {
   user_id BigInt @db.UnsignedBigInt
   createdAt DateTime @default(now()) @db.Timestamp(0)
   updatedAt DateTime @default(now()) @db.Timestamp(0) @updatedAt
+
+  products products @relation(fields: [product_id], references: [id], onDelete: Restrict, onUpdate: Cascade)
+  users users @relation(fields: [user_id], references: [id], onDelete: Restrict, onUpdate: Cascade)
 }
 
 enum products_remark {
