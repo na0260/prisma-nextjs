@@ -98,6 +98,7 @@ model users {
   customer_profiles customer_profiles?
   product_wishes product_wishes[]
   product_carts product_carts[]
+  invoices invoices[]
 }
 
 model customer_profiles {
@@ -201,6 +202,8 @@ model invoices {
   user_id BigInt @db.UnsignedBigInt
   createdAt DateTime @default(now()) @db.Timestamp(0)
   updatedAt DateTime @default(now()) @db.Timestamp(0) @updatedAt
+
+  users users @relation(fields: [user_id], references: [id], onDelete: Restrict, onUpdate: Cascade)
 }
 
 enum invoices_delivery_status {
