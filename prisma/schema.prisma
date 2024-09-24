@@ -91,6 +91,8 @@ model users {
   otp String @db.VarChar(10)
   createdAt DateTime @default(now()) @db.Timestamp(0)
   updatedAt DateTime @default(now()) @db.Timestamp(0) @updatedAt
+
+  customer_profiles customer_profiles?
 }
 
 model customer_profiles {
@@ -113,6 +115,8 @@ model customer_profiles {
   user_id BigInt @unique @db.UnsignedBigInt
   createdAt DateTime @default(now()) @db.Timestamp(0)
   updatedAt DateTime @default(now()) @db.Timestamp(0) @updatedAt
+
+  users users @relation(fields: [user_id], references: [id], onDelete: Restrict, onUpdate: Cascade)
 }
 
 enum products_remark {
