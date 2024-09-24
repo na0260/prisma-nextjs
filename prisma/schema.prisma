@@ -119,6 +119,14 @@ model customer_profiles {
   users users @relation(fields: [user_id], references: [id], onDelete: Restrict, onUpdate: Cascade)
 }
 
+model product_wishes {
+  id BigInt @id @default(autoincrement()) @db.UnsignedBigInt
+  product_id BigInt @db.UnsignedBigInt
+  user_id BigInt @db.UnsignedBigInt
+  createdAt DateTime @default(now()) @db.Timestamp(0)
+  updatedAt DateTime @default(now()) @db.Timestamp(0) @updatedAt
+}
+
 enum products_remark {
   POPULAR
   NEW
