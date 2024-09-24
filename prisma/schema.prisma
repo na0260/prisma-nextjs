@@ -57,6 +57,7 @@ model products {
   product_wishes product_wishes[]
   product_carts product_carts[]
   product_reviews product_reviews[]
+  invoice_products invoice_products[]
 }
 
 model product_details {
@@ -99,6 +100,7 @@ model users {
   product_wishes product_wishes[]
   product_carts product_carts[]
   invoices invoices[]
+  invoice_products invoice_products[]
 }
 
 model customer_profiles {
@@ -204,6 +206,7 @@ model invoices {
   updatedAt DateTime @default(now()) @db.Timestamp(0) @updatedAt
 
   users users @relation(fields: [user_id], references: [id], onDelete: Restrict, onUpdate: Cascade)
+  invoice_products invoice_products[]
 }
 
 model invoice_products {
@@ -215,6 +218,10 @@ model invoice_products {
   sale_price String @db.VarChar(50)
   createdAt DateTime @default(now()) @db.Timestamp(0)
   updatedAt DateTime @default(now()) @db.Timestamp(0) @updatedAt
+
+  invoices invoices @relation(fields: [invoice_id], references: [id], onDelete: Restrict, onUpdate: Cascade)
+  products products @relation(fields: [product_id], references: [id], onDelete: Restrict, onUpdate: Cascade)
+  users users @relation(fields: [user_id], references: [id], onDelete: Restrict, onUpdate: Cascade)
 }
 
 enum invoices_delivery_status {
