@@ -53,6 +53,7 @@ model products {
   categories categories @relation(fields: [category_id], references: [id], onDelete: Restrict, onUpdate: Cascade)
 
   product_details product_details?
+  product_sliders product_sliders?
 }
 
 model product_details {
@@ -77,9 +78,11 @@ model product_sliders {
   short_des String @db.VarChar(255)
   price String @db.VarChar(50)
   image String @db.VarChar(255)
-  product_id BigInt @db.UnsignedBigInt
+  product_id BigInt @unique @db.UnsignedBigInt
   createdAt DateTime @default(now()) @db.Timestamp(0)
   updatedAt DateTime @default(now()) @db.Timestamp(0) @updatedAt
+
+  products products @relation(fields: [product_id], references: [id], onDelete: Restrict, onUpdate: Cascade)
 }
 
 enum products_remark {
