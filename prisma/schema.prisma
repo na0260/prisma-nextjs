@@ -149,6 +149,16 @@ model product_carts {
   users users @relation(fields: [user_id], references: [id], onDelete: Restrict, onUpdate: Cascade)
 }
 
+model product_reviews {
+  id BigInt @id @default(autoincrement()) @db.UnsignedBigInt
+  description String @db.LongText
+  rating String @db.VarChar(50)
+  customer_id BigInt @db.UnsignedBigInt
+  product_id BigInt @db.UnsignedBigInt
+  createdAt DateTime @default(now()) @db.Timestamp(0)
+  updatedAt DateTime @default(now()) @db.Timestamp(0) @updatedAt
+}
+
 enum products_remark {
   POPULAR
   NEW
