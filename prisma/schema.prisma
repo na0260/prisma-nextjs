@@ -51,6 +51,8 @@ model products {
 
   brands brands @relation(fields: [brand_id], references: [id], onDelete: Restrict, onUpdate: Cascade)
   categories categories @relation(fields: [category_id], references: [id], onDelete: Restrict, onUpdate: Cascade)
+
+  product_details product_details?
 }
 
 model product_details {
@@ -65,6 +67,8 @@ model product_details {
   product_id BigInt @unique @db.UnsignedBigInt
   createdAt DateTime @default(now()) @db.Timestamp(0)
   updatedAt DateTime @default(now()) @db.Timestamp(0) @updatedAt
+
+  products products @relation(fields: [product_id], references: [id], onDelete: Restrict, onUpdate: Cascade)
 }
 
 enum products_remark {
