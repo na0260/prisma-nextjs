@@ -20,3 +20,11 @@ model brands {
   createdAt DateTime @default(now()) @db.Timestamp(0)
   updatedAt DateTime @default(now()) @db.Timestamp(0) @updatedAt
 }
+
+model categories {
+  id BigInt @id @default(autoincrement()) @db.UnsignedBigInt
+  categoryName String @db.VarChar(50)
+  categoryImg String @db.VarChar(255)
+  createdAt DateTime @default(now()) @db.Timestamp(0)
+  updatedAt DateTime @default(now()) @db.Timestamp(0) @updatedAt
+}
