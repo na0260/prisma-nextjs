@@ -187,6 +187,29 @@ model policies {
   updatedAt DateTime @default(now()) @db.Timestamp(0) @updatedAt
 }
 
+model invoices {
+  id BigInt @id @default(autoincrement()) @db.UnsignedBigInt
+  total String @db.VarChar(50)
+  vat String @db.VarChar(50)
+  payable String @db.VarChar(50)
+  cus_details String @db.LongText
+  ship_details String @db.LongText
+  tran_id String @db.VarChar(50)
+  val_id String @default("0") @db.VarChar(50)
+  delivery_status invoices_delivery_status
+  payment_status String @db.VarChar(255)
+  user_id BigInt @db.UnsignedBigInt
+  createdAt DateTime @default(now()) @db.Timestamp(0)
+  updatedAt DateTime @default(now()) @db.Timestamp(0) @updatedAt
+}
+
+enum invoices_delivery_status {
+  PENDING
+  PROCESSING
+  SHIPPED
+  DELIVERED
+}
+
 enum policies_type {
   ABOUT
   REFUND
