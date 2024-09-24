@@ -206,6 +206,17 @@ model invoices {
   users users @relation(fields: [user_id], references: [id], onDelete: Restrict, onUpdate: Cascade)
 }
 
+model invoice_products {
+  id BigInt @id @default(autoincrement()) @db.UnsignedBigInt
+  invoice_id BigInt @db.UnsignedBigInt
+  product_id BigInt @db.UnsignedBigInt
+  user_id BigInt @db.UnsignedBigInt
+  qty String @db.VarChar(50)
+  sale_price String @db.VarChar(50)
+  createdAt DateTime @default(now()) @db.Timestamp(0)
+  updatedAt DateTime @default(now()) @db.Timestamp(0) @updatedAt
+}
+
 enum invoices_delivery_status {
   PENDING
   PROCESSING
