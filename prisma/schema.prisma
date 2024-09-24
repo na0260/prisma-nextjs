@@ -165,6 +165,20 @@ model product_reviews {
   customer_profiles customer_profiles @relation(fields: [customer_id], references: [id], onDelete: Restrict, onUpdate: Cascade)
 }
 
+model sslcommerz_accounts {
+  id BigInt @id @default(autoincrement()) @db.UnsignedBigInt
+  store_id String @db.VarChar(255)
+  store_passwd String @db.VarChar(255)
+  currency String @db.VarChar(50)
+  success_url String @db.VarChar(255)
+  fail_url String @db.VarChar(255)
+  cancel_url String @db.VarChar(255)
+  ipn_url String @db.VarChar(255)
+  init_url String @db.VarChar(255)
+  createdAt DateTime @default(now()) @db.Timestamp(0)
+  updatedAt DateTime @default(now()) @db.Timestamp(0) @updatedAt
+}
+
 enum products_remark {
   POPULAR
   NEW
