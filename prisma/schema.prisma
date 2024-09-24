@@ -12,3 +12,11 @@ datasource db {
   provider = "mysql"
   url      = env("DATABASE_URL")
 }
+
+model brands {
+  id BigInt @id @default(autoincrement()) @db.UnsignedBigInt
+  brandName String @db.VarChar(50)
+  BrandImg String @db.VarChar(255)
+  createdAt DateTime @default(now()) @db.Timestamp(0)
+  updatedAt DateTime @default(now()) @db.Timestamp(0) @updatedAt
+}
