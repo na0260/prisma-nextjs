@@ -2,6 +2,7 @@ import {NextResponse} from "next/server";
 import {PrismaClient} from "@prisma/client";
 
 export async function GET(req, res) {
+    BigInt.prototype.toJSON = function() { return this.toString() }
     const prisma = new PrismaClient();
     // Insert one
     /*await prisma.brands.create(
@@ -81,6 +82,14 @@ export async function GET(req, res) {
     });
 
     return NextResponse.json({status: "Deleted Many Success"});*/
-    // Relational Insert
+
     // Find one
+    const brand = await prisma.brands.findUnique({
+        where: {
+            id: 1
+        }
+    });
+
+    return NextResponse.json({status: "Success", data: brand});
+    // Relational Insert
 }
