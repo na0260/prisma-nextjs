@@ -70,6 +70,17 @@ export async function GET(req, res) {
     });
 
     return NextResponse.json({status: "Deleted Success"});*/
+
+    // Delete many
+    /*await prisma.brands.deleteMany({
+        where: {
+            id: {
+                in: [6, 7]
+            }
+        }
+    });
+
+    return NextResponse.json({status: "Deleted Many Success"});*/
     // Relational Insert
     // Find one
 }
