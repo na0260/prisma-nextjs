@@ -115,5 +115,4 @@ export async function GET(req, res) {
 
     return NextResponse.json({status: "Success", data: brands});*/
 
-    // Relational Insert
 }
