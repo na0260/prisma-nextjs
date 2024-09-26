@@ -34,8 +34,20 @@ export async function GET(req, res) {
 
     return NextResponse.json({status: "Many Success"});*/
 
-    // Relational Insert
     // Update one
+    /*await prisma.brands.update({
+        data: {
+            brandName: "Brand 1 Updated",
+            BrandImg: "SomethingUpdated.png"
+        },
+        where: {
+            id: 1
+        }
+    });
+
+    return NextResponse.json({status: "Updated Success"});*/
+
+    // Relational Insert
     // Delete one
     // Find one
 }
