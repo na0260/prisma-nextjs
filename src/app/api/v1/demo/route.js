@@ -84,12 +84,36 @@ export async function GET(req, res) {
     return NextResponse.json({status: "Deleted Many Success"});*/
 
     // Find one
-    const brand = await prisma.brands.findUnique({
+    /*const brand = await prisma.brands.findUnique({
         where: {
             id: 1
         }
     });
 
-    return NextResponse.json({status: "Success", data: brand});
+    return NextResponse.json({status: "Success", data: brand});*/
+
+    // Find many
+    /*const brands = await prisma.brands.findMany(
+        {
+            select: {
+                id: true,
+                brandName: true,
+                BrandImg: true
+            },
+            where: {
+                id: {
+                    in: [1, 3, 5]
+                }
+            },
+            orderBy: {
+                id: "desc"
+            },
+            take: 2,
+            skip: 1,
+        }
+    );
+
+    return NextResponse.json({status: "Success", data: brands});*/
+
     // Relational Insert
 }
